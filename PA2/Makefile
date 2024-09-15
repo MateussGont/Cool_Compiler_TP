@@ -1,11 +1,11 @@
 
 ASSN = 2
 CLASS= cs143
-CLASSDIR= /usr/class/cs143/cool
+CLASSDIR= /var/tmp/cool
 LIB= -lfl
 
 SRC= cool.flex test.cl README 
-CSRC= lextest.cc utilities.cc stringtab.cc handle_flags.cc
+CSRC= lextest.cc utilities.cc stringtab.cc handle_flags.cc 
 TSRC= mycoolc
 HSRC= 
 CGEN= cool-lex.cc
