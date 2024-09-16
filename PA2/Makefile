@@ -1,11 +1,11 @@
 
 ASSN = 2
 CLASS= cs143
-CLASSDIR= /var/tmp/cool
-LIB= -lfl
+CLASSDIR= ../..
+LIB=
 
 SRC= cool.flex test.cl README 
-CSRC= lextest.cc utilities.cc stringtab.cc handle_flags.cc 
+CSRC= lextest.cc utilities.cc stringtab.cc handle_flags.cc
 TSRC= mycoolc
 HSRC= 
 CGEN= cool-lex.cc
@@ -50,23 +50,11 @@ dotest:	lexer test.cl
 ${LIBS}:
 	${CLASSDIR}/etc/link-object ${ASSN} $@
 
-# These dependencies allow you to get the starting files for
-# the assignment.  They will not overwrite a file you already have.
-
-${SRC} :								
-	${CLASSDIR}/etc/copy-skel ${ASSN} ${SRC}
-
-${LSRC} :
-	${CLASSDIR}/etc/link-shared ${ASSN} ${LSRC}
-
 ${TSRC} ${CSRC}:
 	-ln -s ${CLASSDIR}/src/PA${ASSN}/$@ $@
 
 ${HSRC}:
 	-ln -s ${CLASSDIR}/include/PA${ASSN}/$@ $@
-
-submit-clean: ${OUTPUT}
-	-rm -f *.s core ${OBJS} lexer cool-lex.cc *~ parser cgen semant
 
 clean :
 	-rm -f ${OUTPUT} *.s core ${OBJS} lexer cool-lex.cc *~ parser cgen semant
@@ -78,4 +66,5 @@ clean-compile:
 	${SHELL} -ec '${DEPEND} $< | sed '\''s/\($*\.o\)[ :]*/\1 $@ : /g'\'' > $@'
 
 -include ${CFIL:.cc=.d}
+
 
